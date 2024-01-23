@@ -25,7 +25,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
-        contact: resolve(__dirname, "pages/bubbles.html"),
+        bubbles: resolve(__dirname, "pages/bubbles.html"),
+        auroraBgCss: resolve(__dirname, "pages/aurora-bg-css.html"),
       },
       output: {
         chunkFileNames: "assets/js/[name].js",
