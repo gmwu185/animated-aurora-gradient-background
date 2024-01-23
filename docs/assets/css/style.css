@@ -1,0 +1,357 @@
+@charset "UTF-8";@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --bubbles-color-bg1: rgb(108, 0, 162);
+  --bubbles-color-bg2: rgb(0, 17, 82);
+  --bubbles-color1: 18, 113, 255;
+  --bubbles-color2: 221, 74, 255;
+  --bubbles-color3: 100, 220, 255;
+  --bubbles-color4: 200, 50, 50;
+  --bubbles-color5: 180, 180, 50;
+  --bubbles-color-interactive: 140, 100, 255;
+  --circle-size: 80%;
+  --blending: hard-light;
+}
+@keyframes moveInCircle {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes moveVertical {
+  0% {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translateY(50%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+@keyframes moveHorizontal {
+  0% {
+    transform: translateX(-50%) translateY(-10%);
+  }
+  50% {
+    transform: translateX(50%) translateY(10%);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-10%);
+  }
+}
+.bubblesMain {
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+}
+.bubblesMain__content {
+  opacity: 0.8;
+}
+.bubblesMain__content__title {
+  color: white;
+  font-family: "Dongle", sans-serif;
+  font-size: 6rem;
+  user-select: none;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+  margin: 0;
+}
+.bubblesMain__content__link {
+  color: white;
+  font-size: 2rem;
+}
+.bubbles {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(40deg, var(--bubbles-color-bg1), var(--bubbles-color-bg2));
+  /** radial-gradient(): 徑向漸變 (放射圓形漸層)
+   * 基本语法：radial-gradient(shape size at position, color-stop1, color-stop2, ...)
+   * 例：radial-gradient(circle at center, yellow, red);
+   */
+  top: 0;
+  left: 0;
+}
+.bubbles__svg {
+  display: none;
+}
+.bubbles__items {
+  filter: url(#goo) blur(40px);
+  /** filter: 濾鏡
+   * 第一參數 url(#goo)：
+   * 1. 此 class 以 filter 屬性，指定 id="goo" (svg 內層的 filter 元素 id 名稱)
+   * 2. svg 需被疊在套用 bule() 效果的元素之後，啟用時高光效果會更強列但畫面呈現會較吃運算效能產生累格。
+   * 3. svg 元素已被 display none，已無 SVG 的強列高光效果，只等於使用 blur(40px)。
+   * 第二參數 blur(40px)：高期模糊 40 xp
+   */
+  width: 100%;
+  height: 100%;
+}
+.bubbles__items__item {
+  position: absolute;
+  mix-blend-mode: var(--blending);
+  /** mix-blend-mode: hard-light;
+   * 元素的內容應該與元素的直系父元素的內容和元素的背景如何混合。
+   * 變數 --blending 的值為 hard-light，設定高光 (強光)。
+   */
+  opacity: 1;
+  width: var(--circle-size);
+  height: var(--circle-size);
+}
+.bubbles__items__item--g1 {
+  background: radial-gradient(circle at center, rgba(var(--bubbles-color1), 0.8) 0, rgba(var(--bubbles-color1), 0) 50%) no-repeat;
+  top: calc(50% - var(--circle-size) / 2);
+  left: calc(50% - var(--circle-size) / 2);
+  transform-origin: center center;
+  animation: moveVertical 30s ease infinite;
+  /** animation 簡寫，實際完整設定如下
+   * animation-name: moveVertical; // 執行動畫名稱為 moveVertical 的動畫設定
+   * animation-duration: 30s; // 播放期間：30 秒為一次
+   * animation-timing-function: ease; // 運動方式：ease
+   * animation-iteration-count: infinite; // 次數：無限
+   */
+}
+.bubbles__items__item--g2 {
+  background: radial-gradient(circle at center, rgba(var(--bubbles-color2), 0.8) 0, rgba(var(--bubbles-color2), 0) 50%) no-repeat;
+  top: calc(50% - var(--circle-size) / 2);
+  left: calc(50% - var(--circle-size) / 2);
+  transform-origin: calc(50% - 400px);
+  animation: moveInCircle 20s reverse infinite;
+}
+.bubbles__items__item--g3 {
+  background: radial-gradient(circle at center, rgba(var(--bubbles-color3), 0.8) 0, rgba(var(--bubbles-color3), 0) 50%) no-repeat;
+  top: calc(50% - var(--circle-size) / 2 + 200px);
+  left: calc(50% - var(--circle-size) / 2 - 500px);
+  transform-origin: calc(50% + 400px);
+  animation: moveInCircle 40s linear infinite;
+}
+.bubbles__items__item--g4 {
+  background: radial-gradient(circle at center, rgba(var(--bubbles-color4), 0.8) 0, rgba(var(--bubbles-color4), 0) 50%) no-repeat;
+  top: calc(50% - var(--circle-size) / 2);
+  left: calc(50% - var(--circle-size) / 2);
+  transform-origin: calc(50% - 200px);
+  animation: moveHorizontal 40s ease infinite;
+}
+.bubbles__items__item--g5 {
+  background: radial-gradient(circle at center, rgba(var(--bubbles-color5), 0.8) 0, rgba(var(--bubbles-color5), 0) 50%) no-repeat;
+  width: calc(var(--circle-size) * 2);
+  height: calc(var(--circle-size) * 2);
+  top: calc(50% - var(--circle-size));
+  left: calc(50% - var(--circle-size));
+  transform-origin: calc(50% - 800px) calc(50% + 200px);
+  animation: moveInCircle 20s ease infinite;
+}
+.bubbles__items__interactive {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--bubbles-color-interactive), 0.8) 0, rgba(var(--bubbles-color-interactive), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: 100%;
+  height: 100%;
+  top: -50%;
+  left: -50%;
+  opacity: 0.7;
+}
+@keyframes moveDown {
+  0%, 100% {
+    top: -100px;
+  }
+  70% {
+    top: 700px;
+  }
+}
+@keyframes moveUp {
+  0%, 100% {
+    bottom: -100px;
+  }
+  70% {
+    bottom: 700px;
+  }
+}
+@keyframes moveLeft {
+  0%, 100% {
+    left: -100px;
+  }
+  70% {
+    left: 1300px;
+  }
+}
+@keyframes moveRight {
+  0%, 100% {
+    right: -100px;
+  }
+  70% {
+    right: 1300px;
+  }
+}
+.auroraBGCSSBody {
+  background-image: linear-gradient(80deg, rgb(5, 124, 172), rgb(199, 10, 114));
+  overflow: hidden;
+  font-family: "poppins";
+  min-height: 100vh;
+}
+.auroraBGCSSArea {
+  position: relative;
+}
+.auroraBGCSSArea__up {
+  position: absolute;
+  height: 800px;
+  width: 800px;
+  border-radius: 50%;
+  background-image: linear-gradient(80deg, rgb(5, 124, 172), rgba(43, 247, 202, 0.5));
+  filter: blur(80px);
+  animation: moveDown 40s infinite;
+}
+.auroraBGCSSArea__down {
+  position: absolute;
+  right: 0;
+  height: 500px;
+  width: 500px;
+  border-radius: 50%;
+  background-image: linear-gradient(80deg, rgba(245, 207, 82, 0.8), rgb(199, 10, 114));
+  filter: blur(80px);
+  animation: moveUp 30s infinite;
+}
+.auroraBGCSSArea__left {
+  position: absolute;
+  right: 0;
+  height: 500px;
+  width: 500px;
+  border-radius: 50%;
+  background-image: linear-gradient(80deg, rgb(5, 124, 172), rgba(183, 253, 52, 0.8));
+  filter: blur(80px);
+  animation: moveLeft 30s 1s infinite;
+}
+.auroraBGCSSArea__right {
+  position: absolute;
+  right: 0;
+  height: 500px;
+  width: 500px;
+  border-radius: 50%;
+  background-image: linear-gradient(80deg, rgba(26, 248, 18, 0.6), rgba(199, 235, 52, 0.8));
+  filter: blur(80px);
+  animation: moveRight 40s 0.5s infinite;
+}
+.auroraBGCSSNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(5px);
+  padding: 20px 30px;
+  color: #fff;
+}
+.auroraBGCSSNav__list {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  justify-content: space-evenly;
+}
+.auroraBGCSSNav__list__item {
+  margin: 0 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.auroraBGCSSNav__list__btn {
+  padding: 10px 20px;
+  margin: 0 20px;
+  border: 1px solid #fff;
+  background-color: transparent;
+  color: #fff;
+  font-family: inherit;
+  transition: all ease-in 0.4s;
+  cursor: pointer;
+}
+.auroraBGCSSNav__list__btn:hover {
+  background-color: #fff;
+  color: #000;
+}
+.auroraBGCSSDetails {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  z-index: 999;
+  text-align: center;
+  color: #ebe7e7;
+}
+.auroraBGCSSDetails__title {
+  font-size: 4.375rem;
+  line-height: 0;
+  text-shadow: 2px 5px 10px rgba(0, 0, 0, 0.2);
+  font-weight: 900;
+}
+.auroraBGCSSDetails__subTitle {
+  background-color: transparent;
+  border: solid 2px #fff;
+  font-size: 3.5rem;
+  font-weight: 600;
+  padding: 0 20px;
+}
+.auroraBGCSSDetails__content {
+  width: 50%;
+}
+.auroraBGCSSScoialIcons {
+  position: relative;
+  text-align: center;
+}
+.auroraBGCSSScoialIcons a {
+  color: #fff;
+  margin: 0 20px;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+.nullxAuroraBody {
+  height: 100vh;
+}
+.nullxAuroraBody--bgColor {
+  background-color: #330558;
+}
+.nullxAuroraContainer {
+  height: 100%;
+  position: relative;
+}
+.nullxAuroraContainer__color {
+  position: absolute;
+  height: 50%;
+  width: 60%;
+  filter: blur(200px);
+  mix-blend-mode: hard-light;
+}
+.nullxAuroraContainer__color--set1 {
+  background: radial-gradient(100vh at 50% 50%, #ffcc66, transparent);
+  /** 元素內的圓漸層定位：
+   * 居中：100vh at 50% 50%,
+   * 右下：100vh at 100% 100%,
+  */
+  top: 0;
+  left: 0;
+}
+.nullxAuroraContainer__color--set2 {
+  background: radial-gradient(100vh at 50% 50%, #e271b2, transparent);
+  top: 0;
+  right: 0;
+}
+.nullxAuroraContainer__color--set3 {
+  background: radial-gradient(100vh at 50% 50%, #8ad2fc, transparent);
+  top: 50%;
+  left: 20%;
+}

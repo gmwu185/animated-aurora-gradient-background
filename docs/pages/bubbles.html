@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/animated-aurora-gradient-background/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bubbles</title>
+    <script type="module" crossorigin src="/animated-aurora-gradient-background/assets/js/main2.js?time=1706034045224"></script>
+    <link rel="stylesheet" crossorigin href="/animated-aurora-gradient-background/assets/css/style.css?time=1706034045224">
+  </head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&display=swap"
+    rel="stylesheet"
+  />
+  <body>
+    <div class="bubblesMain">
+      <div class="bubblesMain__content">
+        <h1 class="bubblesMain__content__title">Bubbles</h1>
+      </div>
+    </div>
+    <div class="bubbles">
+      <svg class="bubbles__svg" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="goo">
+            <feGaussianBlur
+              in="SourceGraphic"
+              stdDeviation="10"
+              result="blur"
+            />
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+              result="goo"
+            />
+            <feBlend in="SourceGraphic" in2="goo" />
+          </filter>
+        </defs>
+      </svg>
+      <div class="bubbles__items">
+        <div class="bubbles__items__item bubbles__items__item--g1"></div>
+        <div class="bubbles__items__item bubbles__items__item--g2"></div>
+        <div class="bubbles__items__item bubbles__items__item--g3"></div>
+        <div class="bubbles__items__item bubbles__items__item--g4"></div>
+        <div class="bubbles__items__item bubbles__items__item--g5"></div>
+        <div class="bubbles__items__interactive js-interactive"></div>
+        <!-- .interactive -> 滑鼠操作連動元素 -->
+      </div>
+    </div>
+  </body>
+</html>
