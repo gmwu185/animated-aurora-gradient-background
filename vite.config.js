@@ -27,6 +27,7 @@ export default defineConfig({
         main: resolve(__dirname, "index.html"),
         bubbles: resolve(__dirname, "pages/bubbles.html"),
         auroraBgCss: resolve(__dirname, "pages/aurora-bg-css.html"),
+        nullxAurora: resolve(__dirname, "pages/nullxAurora.html"),
       },
       output: {
         chunkFileNames: "assets/js/[name].js",

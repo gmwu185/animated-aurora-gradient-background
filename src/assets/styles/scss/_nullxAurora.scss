@@ -1,0 +1,53 @@
+
+// nullxAurora
+.nullxAurora {
+  &Body {
+    height: 100vh;
+
+    &--bgColor {
+      background-color: #330558;
+      // background-color: #fff;
+    }
+  }
+
+  &Container {
+    height: 100%;
+    position: relative;
+
+    &__color {
+      position: absolute;
+      height: 50%;
+      width: 60%;
+      filter: blur(200px);
+      mix-blend-mode: hard-light; // 類 PhotoShop 的圖層混合光源模式
+
+      &--set1 {
+        background: radial-gradient(100vh at 50% 50%,
+            #ffcc66,
+            transparent);
+        /** 元素內的圓漸層定位：
+         * 居中：100vh at 50% 50%,
+         * 右下：100vh at 100% 100%,
+        */
+        top: 0;
+        left: 0;
+      }
+
+      &--set2 {
+        background: radial-gradient(100vh at 50% 50%,
+            #e271b2,
+            transparent);
+        top: 0;
+        right: 0;
+      }
+
+      &--set3 {
+        background: radial-gradient(100vh at 50% 50%,
+            #8ad2fc,
+            transparent);
+        top: 50%;
+        left: 20%;
+      }
+    }
+  }
+}
