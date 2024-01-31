@@ -1,10 +1,10 @@
 ## 此 Repo 的目標
-====
+=====
 將線上找到幾個極光背景效果 (aurora gradient background) 實作方式整理出來，由 `linear-gradient()` (線性漸層) 或 `radial-gradient()` (圓形漸層) 配合上 `filter: blur();` 產生，接著以 CSS 動畫方式產生迴圈動畫。
 
 
 ## 參考資料
-====
+=====
 - [Elevate Your Website with Radial Gradient Background | HTML & CSS Only |](https://www.youtube.com/watch?v=RohGByqWD_E)
   - 說明：
     1. radial-gradient() 設定原理
